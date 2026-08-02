@@ -1,0 +1,1170 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Grand Horizon Hotel - AI Butler</title>
+
+    <!-- Font Awesome Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        header {
+            background: #111;
+            padding: 20px 8%;
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #d4af37;
+        }
+
+
+        /* =========================
+           HERO SECTION
+        ========================= */
+
+        .hero {
+            min-height: 400px;
+            background: linear-gradient(
+                rgba(0,0,0,0.6),
+                rgba(0,0,0,0.6)
+            ),
+            url("images/hotel.jpg");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+        }
+
+
+        /* =========================
+           AI BUTLER SECTION
+        ========================= */
+
+        .ai-section {
+            padding: 60px 8%;
+            background: #fff;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: #222;
+        }
+
+        .section-title p {
+            color: #666;
+            margin-top: 10px;
+        }
+
+
+        /* =========================
+           CHATBOT
+        ========================= */
+
+        .chat-container {
+            max-width: 700px;
+            margin: auto;
+            background: #111;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .chat-header {
+            background: #d4af37;
+            color: #111;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            font-size: 20px;
+        }
+
+        .chat-header button {
+            background: #111;
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .chat-messages {
+            height: 350px;
+            overflow-y: auto;
+            padding: 20px;
+            background: #1c1c1c;
+        }
+
+        .msg {
+            margin-bottom: 15px;
+            padding: 12px 15px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+
+        .bot-msg {
+            background: #333;
+            color: white;
+            margin-right: auto;
+        }
+
+        .user-msg {
+            background: #d4af37;
+            color: #111;
+            margin-left: auto;
+        }
+
+        .msg-time {
+            display: block;
+            font-size: 11px;
+            margin-top: 5px;
+            opacity: 0.7;
+        }
+
+        .chat-input-area {
+            display: flex;
+            padding: 15px;
+            background: #222;
+            gap: 10px;
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            padding: 13px;
+            border: none;
+            border-radius: 25px;
+            outline: none;
+        }
+
+        .send-btn {
+            width: 50px;
+            border: none;
+            border-radius: 50%;
+            background: #d4af37;
+            color: #111;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .send-btn:hover {
+            background: #fff;
+        }
+
+
+        /* =========================
+           QUICK BUTTONS
+        ========================= */
+
+        .quick-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px;
+            background: #222;
+        }
+
+        .quick-buttons button {
+            padding: 8px 15px;
+            border: 1px solid #d4af37;
+            background: transparent;
+            color: #d4af37;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .quick-buttons button:hover {
+            background: #d4af37;
+            color: #111;
+        }
+
+
+        /* =========================
+           FOOD & TOUR SECTION
+        ========================= */
+
+        .features {
+            padding: 60px 8%;
+            background: #f5f5f5;
+        }
+
+        .feature-container {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(280px, 1fr)
+            );
+
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .feature-card h3 {
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        .feature-card input,
+        .feature-card select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .feature-card button {
+            padding: 12px 20px;
+            background: #111;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .feature-card button:hover {
+            background: #d4af37;
+            color: #111;
+        }
+
+        .result-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f8f8;
+            border-radius: 8px;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 768px) {
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero-content h1 {
+                font-size: 35px;
+            }
+
+            .chat-messages {
+                height: 300px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<header>
+
+    <nav>
+
+        <div class="logo">
+            Grand Horizon Hotel
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="about.html">About</a>
+            </li>
+
+            <li>
+                <a href="room.html">Rooms</a>
+            </li>
+
+            <li>
+                <a href="menu.html">Menu</a>
+            </li>
+
+            <li>
+                <a href="contact.html">Contact</a>
+            </li>
+
+            <li>
+                <a href="booking.html">Book Now</a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>Grand Horizon Hotel</h1>
+
+        <p>
+            Experience Luxury, Comfort & AI-Powered Hospitality
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     AI BUTLER
+========================= -->
+
+<section class="ai-section">
+
+    <div class="section-title">
+
+        <h2>
+            <i class="fa-solid fa-robot"></i>
+            Meet Acharya
+        </h2>
+
+        <p>
+            Your 24/7 AI Butler at Grand Horizon Hotel
+        </p>
+
+    </div>
+
+
+    <div class="chat-container">
+
+        <!-- Chat Header -->
+
+        <div class="chat-header">
+
+            <h3>
+                <i class="fa-solid fa-robot"></i>
+                Acharya AI Butler
+            </h3>
+
+            <button onclick="toggleChatWindow()">
+                <i class="fa-solid fa-minus"></i>
+            </button>
+
+        </div>
+
+
+        <!-- Messages -->
+
+        <div
+            class="chat-messages"
+            id="chatMessages"
+        >
+
+            <div class="msg bot-msg">
+
+                <p>
+                    Namaste! Welcome to Grand Horizon Hotel.
+                    I am Acharya, your AI Butler.
+                    How may I assist you?
+                </p>
+
+                <span class="msg-time">
+                    Just now
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Quick Buttons -->
+
+        <div class="quick-buttons">
+
+            <button onclick="sendQuickChip('Tell me about rooms')">
+                <i class="fa-solid fa-bed"></i>
+                Rooms
+            </button>
+
+            <button onclick="sendQuickChip('What is the room price?')">
+                <i class="fa-solid fa-tag"></i>
+                Prices
+            </button>
+
+            <button onclick="sendQuickChip('Tell me about food')">
+                <i class="fa-solid fa-utensils"></i>
+                Food
+            </button>
+
+            <button onclick="sendQuickChip('Suggest a tour')">
+                <i class="fa-solid fa-map"></i>
+                Tours
+            </button>
+
+        </div>
+
+
+        <!-- Input -->
+
+        <div class="chat-input-area">
+
+            <input
+                type="text"
+                id="chatInput"
+                placeholder="Ask Acharya anything..."
+            >
+
+            <button
+                class="send-btn"
+                onclick="sendMessage()"
+            >
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     AI FEATURES
+========================= -->
+
+<section class="features">
+
+    <div class="section-title">
+
+        <h2>
+            AI Concierge Services
+        </h2>
+
+        <p>
+            Discover personalized recommendations from Acharya AI.
+        </p>
+
+    </div>
+
+
+    <div class="feature-container">
+
+
+        <!-- FOOD RECOMMENDER -->
+
+        <div class="feature-card">
+
+            <h3>
+                <i class="fa-solid fa-utensils"></i>
+                AI Food Recommender
+            </h3>
+
+            <p>
+                Tell us your preferred cuisine and dietary preference.
+            </p>
+
+            <input
+                type="text"
+                id="aiFoodInput"
+                placeholder="e.g. Indian, Chinese, Italian"
+            >
+
+            <select id="aiDietarySelect">
+
+                <option value="Any">
+                    Any
+                </option>
+
+                <option value="Vegetarian">
+                    Vegetarian
+                </option>
+
+                <option value="Non-Vegetarian">
+                    Non-Vegetarian
+                </option>
+
+                <option value="Vegan">
+                    Vegan
+                </option>
+
+            </select>
+
+            <button onclick="generateAiFoodRecommendation()">
+
+                Get Food Recommendation
+
+            </button>
+
+
+            <div
+                id="aiFoodResultBox"
+                class="result-box"
+            >
+
+                Your recommendations will appear here.
+
+            </div>
+
+        </div>
+
+
+        <!-- TOUR PLANNER -->
+
+        <div class="feature-card">
+
+            <h3>
+                <i class="fa-solid fa-map-location-dot"></i>
+                AI Tour Planner
+            </h3>
+
+            <p>
+                Plan your perfect Bihar heritage tour.
+            </p>
+
+            <input
+                type="text"
+                id="aiTourInterests"
+                placeholder="e.g. History, temples, culture"
+            >
+
+            <select id="aiTourDays">
+
+                <option value="1">
+                    1 Day
+                </option>
+
+                <option value="2" selected>
+                    2 Days
+                </option>
+
+                <option value="3">
+                    3 Days
+                </option>
+
+                <option value="5">
+                    5 Days
+                </option>
+
+            </select>
+
+            <button onclick="generateAiTourItinerary()">
+
+                Create My Itinerary
+
+            </button>
+
+
+            <div
+                id="aiTourResultBox"
+                class="result-box"
+            >
+
+                Your itinerary will appear here.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+        © 2026 Grand Horizon Hotel.
+        All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+document.addEventListener(
+    'DOMContentLoaded',
+    () => {
+
+        const chatInput =
+            document.getElementById('chatInput');
+
+        if (chatInput) {
+
+            chatInput.addEventListener(
+                'keypress',
+                (e) => {
+
+                    if (e.key === 'Enter') {
+
+                        sendMessage();
+
+                    }
+
+                }
+            );
+
+        }
+
+    }
+);
+
+
+// ==============================
+// TOGGLE CHAT
+// ==============================
+
+function toggleChatWindow() {
+
+    const chatMessages =
+        document.getElementById('chatMessages');
+
+    if (chatMessages) {
+
+        if (
+            chatMessages.style.display === 'none'
+        ) {
+
+            chatMessages.style.display =
+                'block';
+
+        } else {
+
+            chatMessages.style.display =
+                'none';
+
+        }
+
+    }
+
+}
+
+
+// ==============================
+// QUICK CHAT BUTTONS
+// ==============================
+
+function sendQuickChip(text) {
+
+    const input =
+        document.getElementById('chatInput');
+
+    if (input) {
+
+        input.value = text;
+
+        sendMessage();
+
+    }
+
+}
+
+
+// ==============================
+// SEND MESSAGE
+// ==============================
+
+async function sendMessage() {
+
+    const input =
+        document.getElementById('chatInput');
+
+    if (!input) return;
+
+
+    const text =
+        input.value.trim();
+
+    if (!text) return;
+
+
+    const msgBox =
+        document.getElementById('chatMessages');
+
+    if (!msgBox) return;
+
+
+    // User Message
+
+    const userDiv =
+        document.createElement('div');
+
+    userDiv.className =
+        'msg user-msg';
+
+    userDiv.innerHTML = `
+
+        <p>${text}</p>
+
+        <span class="msg-time">
+            Just now
+        </span>
+
+    `;
+
+    msgBox.appendChild(userDiv);
+
+
+    input.value = '';
+
+
+    msgBox.scrollTop =
+        msgBox.scrollHeight;
+
+
+    // Bot Typing
+
+    const botDiv =
+        document.createElement('div');
+
+    botDiv.className =
+        'msg bot-msg';
+
+    botDiv.innerHTML = `
+
+        <p>
+
+            <i class="fa-solid fa-spinner fa-spin"></i>
+
+            Acharya is thinking...
+
+        </p>
+
+    `;
+
+    msgBox.appendChild(botDiv);
+
+
+    msgBox.scrollTop =
+        msgBox.scrollHeight;
+
+
+    try {
+
+        const response =
+            await fetch(
+                '/api/concierge',
+                {
+
+                    method: 'POST',
+
+                    headers: {
+                        'Content-Type':
+                        'application/json'
+                    },
+
+                    body:
+                        JSON.stringify({
+                            message: text
+                        })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        botDiv.querySelector(
+            'p'
+        ).innerHTML =
+
+            data.reply ||
+
+            "Namaste! Welcome to Grand Horizon Hotel. How may I assist you?";
+
+
+    } catch (err) {
+
+
+        // Offline Fallback
+
+        let reply =
+
+            "Namaste! Welcome to Grand Horizon Hotel. I am Acharya, your AI Butler. How may I assist you?";
+
+
+        const lower =
+            text.toLowerCase();
+
+
+        // Rooms
+
+        if (
+
+            lower.includes('room') ||
+
+            lower.includes('suite') ||
+
+            lower.includes('book') ||
+
+            lower.includes('price')
+
+        ) {
+
+            reply =
+
+                "Our Grand Horizon Hotel offers Deluxe Rooms, Executive Rooms, and Luxury Suites. Please visit our Rooms page to explore available options and prices.";
+
+        }
+
+
+        // Food
+
+        else if (
+
+            lower.includes('food') ||
+
+            lower.includes('dinner') ||
+
+            lower.includes('eat') ||
+
+            lower.includes('restaurant')
+
+        ) {
+
+            reply =
+
+                "Grand Horizon Hotel offers a variety of delicious Indian and international cuisine. Our restaurant team will be happy to help you choose the perfect meal.";
+
+        }
+
+
+        // Tours
+
+        else if (
+
+            lower.includes('tour') ||
+
+            lower.includes('bihar') ||
+
+            lower.includes('nalanda') ||
+
+            lower.includes('museum')
+
+        ) {
+
+            reply =
+
+                "You can explore Bihar's beautiful heritage destinations including Bihar Museum, Golghar, Nalanda, Rajgir, and Bodh Gaya. I can help you plan your itinerary.";
+
+        }
+
+
+        botDiv.querySelector(
+            'p'
+        ).innerHTML = reply;
+
+
+    }
+
+
+    msgBox.scrollTop =
+        msgBox.scrollHeight;
+
+}
+
+
+// ==============================
+// AI FOOD RECOMMENDER
+// ==============================
+
+async function generateAiFoodRecommendation() {
+
+    const input =
+
+        document
+        .getElementById(
+            'aiFoodInput'
+        )
+        ?.value.trim();
+
+
+    const dietary =
+
+        document
+        .getElementById(
+            'aiDietarySelect'
+        )
+        ?.value;
+
+
+    const resultBox =
+
+        document
+        .getElementById(
+            'aiFoodResultBox'
+        );
+
+
+    if (!resultBox) return;
+
+
+    resultBox.innerHTML = `
+
+        <i class="fa-solid fa-spinner fa-spin"></i>
+
+        Consulting Chef Acharya AI...
+
+    `;
+
+
+    // Local Demo Recommendation
+
+    setTimeout(() => {
+
+        resultBox.innerHTML = `
+
+            <h4>
+                <i class="fa-solid fa-utensils"></i>
+
+                Chef Acharya Recommendations
+            </h4>
+
+            <br>
+
+            <strong>
+                Recommended for you:
+            </strong>
+
+            <br><br>
+
+            🍛 Royal Shahi Thali
+
+            <br>
+
+            🍚 Biryani
+
+            <br>
+
+            🥗 Fresh Seasonal Salad
+
+            <br><br>
+
+            <small>
+                Preference:
+                ${input || 'Indian Cuisine'}
+
+                <br>
+
+                Dietary:
+                ${dietary}
+            </small>
+
+        `;
+
+    }, 1000);
+
+}
+
+
+// ==============================
+// AI TOUR PLANNER
+// ==============================
+
+async function generateAiTourItinerary() {
+
+    const interests =
+
+        document
+        .getElementById(
+            'aiTourInterests'
+        )
+        ?.value.trim();
+
+
+    const days =
+
+        document
+        .getElementById(
+            'aiTourDays'
+        )
+        ?.value;
+
+
+    const resultBox =
+
+        document
+        .getElementById(
+            'aiTourResultBox'
+        );
+
+
+    if (!resultBox) return;
+
+
+    resultBox.innerHTML = `
+
+        <i class="fa-solid fa-spinner fa-spin"></i>
+
+        Creating your ${days}-day itinerary...
+
+    `;
+
+
+    setTimeout(() => {
+
+        resultBox.innerHTML = `
+
+            <h4>
+
+                <i class="fa-solid fa-compass"></i>
+
+                ${days}-Day Bihar Heritage Tour
+
+            </h4>
+
+            <br>
+
+            <strong>
+                Day 1:
+            </strong>
+
+            Bihar Museum and Golghar
+
+            <br><br>
+
+            <strong>
+                Day 2:
+            </strong>
+
+            Nalanda and Rajgir
+
+            <br><br>
+
+            <strong>
+                Interests:
+            </strong>
+
+            ${interests || 'History and Culture'}
+
+        `;
+
+    }, 1000);
+
+}
+
+</script>
+
+</body>
+</html>
+```
+

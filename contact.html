@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Contact Us | Grand Horizon Hotel</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background-color: #f8f8f8;
+        color: #333;
+    }
+
+    /* Navbar */
+    header {
+        background-color: #1f2937;
+        color: white;
+        padding: 18px 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 26px;
+        font-weight: bold;
+        color: #f5c542;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin-left: 25px;
+        font-size: 16px;
+    }
+
+    nav a:hover {
+        color: #f5c542;
+    }
+
+    /* Page Banner */
+    .page-banner {
+        height: 45vh;
+
+        background: linear-gradient(
+            rgba(0, 0, 0, 0.55),
+            rgba(0, 0, 0, 0.55)
+        ),
+        url("https://images.unsplash.com/photo-1564501049412-61c2a3083791")
+        center/cover;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+    }
+
+    .page-banner h1 {
+        font-size: 50px;
+        margin-bottom: 10px;
+    }
+
+    .page-banner p {
+        font-size: 20px;
+    }
+
+    /* Contact Section */
+    .contact-section {
+        padding: 70px 8%;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 35px;
+        color: #1f2937;
+        margin-bottom: 40px;
+    }
+
+    .contact-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+
+    /* Contact Information */
+    .contact-info {
+        background-color: #1f2937;
+        color: white;
+        padding: 40px;
+        border-radius: 10px;
+    }
+
+    .contact-info h2 {
+        color: #f5c542;
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+
+    .contact-info > p {
+        line-height: 1.7;
+        margin-bottom: 30px;
+        color: #ddd;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    .contact-icon {
+        font-size: 25px;
+    }
+
+    .contact-item h3 {
+        color: #f5c542;
+        margin-bottom: 5px;
+    }
+
+    .contact-item p {
+        color: #ddd;
+        line-height: 1.5;
+    }
+
+    /* Contact Form */
+    .contact-form {
+        background-color: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .contact-form h2 {
+        color: #1f2937;
+        font-size: 30px;
+        margin-bottom: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 14px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 15px;
+    }
+
+    .form-group textarea {
+        height: 130px;
+        resize: none;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 14px;
+        background-color: #f5c542;
+        color: #222;
+        border: none;
+        border-radius: 5px;
+        font-size: 17px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .submit-btn:hover {
+        background-color: #d9a900;
+    }
+
+    /* Map / Location */
+    .location {
+        padding: 70px 8%;
+        background-color: white;
+        text-align: center;
+    }
+
+    .location h2 {
+        font-size: 35px;
+        color: #1f2937;
+        margin-bottom: 20px;
+    }
+
+    .location p {
+        color: #666;
+        margin-bottom: 25px;
+    }
+
+    .map-box {
+        max-width: 1000px;
+        height: 300px;
+        margin: auto;
+        background-color: #e5e7eb;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+    }
+
+    .map-box p {
+        font-size: 20px;
+        color: #555;
+    }
+
+    /* Footer */
+    footer {
+        background-color: #111827;
+        color: white;
+        text-align: center;
+        padding: 25px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+
+        header {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        nav a {
+            margin: 0 8px;
+        }
+
+        .page-banner h1 {
+            font-size: 38px;
+        }
+
+        .contact-container {
+            grid-template-columns: 1fr;
+        }
+
+        .contact-info,
+        .contact-form {
+            padding: 25px;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<!-- Navigation Bar -->
+<header>
+
+    <div class="logo">
+        Grand Horizon
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="menu.html">Menu</a>
+        <a href="rooms.html">Rooms</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+</header>
+
+
+<!-- Page Banner -->
+<section class="page-banner">
+
+    <div>
+        <h1>Contact Us</h1>
+
+        <p>
+            We would love to hear from you
+        </p>
+    </div>
+
+</section>
+
+
+<!-- Contact Section -->
+<section class="contact-section">
+
+    <h2 class="section-title">
+        Get In Touch
+    </h2>
+
+    <div class="contact-container">
+
+        <!-- Contact Information -->
+        <div class="contact-info">
+
+            <h2>Contact Information</h2>
+
+            <p>
+                Have a question or want to make a reservation?
+                Feel free to contact us. Our team is always ready
+                to assist you.
+            </p>
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">
+                    📍
+                </div>
+
+                <div>
+                    <h3>Address</h3>
+
+                    <p>
+                        Grand Horizon Hotel,<br>
+                        Greater Noida, Uttar Pradesh,<br>
+                        India
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">
+                    📞
+                </div>
+
+                <div>
+                    <h3>Phone</h3>
+
+                    <p>
+                        +91 98765 43210
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">
+                    📧
+                </div>
+
+                <div>
+                    <h3>Email</h3>
+
+                    <p>
+                        info@grandhorizonhotel.com
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">
+                    🕐
+                </div>
+
+                <div>
+                    <h3>Reception Hours</h3>
+
+                    <p>
+                        Open 24 Hours, 7 Days a Week
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+
+            <h2>Send Us a Message</h2>
+
+            <form>
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Enter your phone number"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="message">
+                        Your Message
+                    </label>
+
+                    <textarea
+                        id="message"
+                        placeholder="Write your message here..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+                    Send Message
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Location Section -->
+<section class="location">
+
+    <h2>Find Us</h2>
+
+    <p>
+        Visit us at our beautiful hotel in Greater Noida.
+    </p>
+
+    <div class="map-box">
+
+        <p>
+            📍 Grand Horizon Hotel, Greater Noida
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- Footer -->
+<footer>
+
+    <p>
+        © 2026 Grand Horizon Hotel. All Rights Reserved.
+    </p>
+
+</footer>
+```
+
+</body>
+</html>

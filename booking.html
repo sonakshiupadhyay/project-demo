@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Your Stay | Grand Horizon Suites & Resorts</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Canvas Confetti for Celebration -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    /* ==========================================================================
+       1. CORE CSS & VARIABLE DEFINITIONS
+       ========================================================================== */
+    :root {
+      --bg-dark: #050505;
+      --bg-card: #0a0a0a;
+      --bg-card-hover: #141414;
+      --bg-glass: rgba(5, 5, 5, 0.92);
+      --bg-glass-light: rgba(255, 255, 255, 0.03);
+      
+      --gold-primary: #c5a059;
+      --gold-light: #f5f2ed;
+      --gold-dark: #9e7d3b;
+      --gold-gradient: linear-gradient(135deg, #f5f2ed 0%, #c5a059 50%, #9e7d3b 100%);
+      --gold-glow: rgba(197, 160, 89, 0.25);
+
+      --text-white: #ffffff;
+      --text-cream: #f5f2ed;
+      --text-muted: #a3a3a3;
+      --text-dark: #121212;
+
+      --border-color: rgba(197, 160, 89, 0.2);
+      --border-hover: rgba(197, 160, 89, 0.6);
+
+      --font-display: 'Cormorant Garamond', 'Playfair Display', serif;
+      --font-heading: 'Playfair Display', serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+
+      --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.5);
+      --shadow-gold: 0 10px 35px rgba(197, 160, 89, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-cream);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      background: #000000;
+      border-bottom: 1px solid rgba(197, 160, 89, 0.12);
+      padding: 0.6rem 0;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .top-bar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .brand-logo-icon {
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--gold-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-primary);
+      font-size: 1.2rem;
+      background: rgba(197, 160, 89, 0.08);
+      box-shadow: 0 0 15px var(--gold-glow);
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text-white);
+      letter-spacing: 2px;
+      line-height: 1;
+    }
+
+    .brand-tagline {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      margin-top: 3px;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: var(--transition-fast);
+      letter-spacing: 0.5px;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--gold-light);
+    }
+
+    /* Buttons */
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.8rem;
+      background: var(--gold-gradient);
+      color: var(--bg-dark);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition-normal);
+      box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(197, 160, 89, 0.5);
+    }
+
+    .btn-outline-gold {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.8rem;
+      background: transparent;
+      color: var(--gold-light);
+      border: 1px solid var(--gold-primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition-normal);
+    }
+
+    .btn-outline-gold:hover {
+      background: rgba(197, 160, 89, 0.15);
+      border-color: var(--gold-light);
+    }
+
+    /* Header Banner */
+    .booking-banner {
+      background: linear-gradient(rgba(5, 5, 5, 0.8), rgba(5, 5, 5, 0.95)), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      padding: 3.5rem 0 2.5rem;
+      border-bottom: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .booking-banner h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      color: var(--text-white);
+      margin-bottom: 0.5rem;
+    }
+
+    .booking-banner p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Progress Stepper */
+    .stepper-container {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.2rem 0;
+    }
+
+    .stepper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 850px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .stepper::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: rgba(197, 160, 89, 0.15);
+      z-index: 1;
+      transform: translateY(-50%);
+    }
+
+    .step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      position: relative;
+      z-index: 2;
+      background: var(--bg-card);
+      padding: 0 0.8rem;
+      cursor: pointer;
+    }
+
+    .step-node {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--bg-dark);
+      border: 2px solid var(--border-color);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: var(--transition-fast);
+    }
+
+    .step-item.active .step-node {
+      border-color: var(--gold-primary);
+      background: var(--gold-gradient);
+      color: var(--bg-dark);
+      box-shadow: 0 0 15px var(--gold-glow);
+    }
+
+    .step-item.completed .step-node {
+      border-color: var(--gold-primary);
+      background: rgba(197, 160, 89, 0.2);
+      color: var(--gold-light);
+    }
+
+    .step-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .step-item.active .step-label {
+      color: var(--gold-light);
+    }
+
+    /* Main Booking Layout */
+    .booking-layout {
+      padding: 3rem 0 5rem;
+      flex-grow: 1;
+    }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 2.2fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .step-content-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .step-title-wrap {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 1.2rem;
+    }
+
+    .step-title-wrap h2 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--text-white);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .step-title-wrap h2 i {
+      color: var(--gold-primary);
+    }
+
+    .step-subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
+    }
+
+    /* Date Bar Form */
+    .date-search-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+      background: rgba(5, 5, 5, 0.6);
+      padding: 1.5rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-size: 0.78rem;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+      padding: 0.85rem 1rem;
+      background: rgba(10, 10, 10, 0.9);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-white);
+      outline: none;
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: var(--transition-fast);
+    }
+
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 10px var(--gold-glow);
+    }
+
+    /* Suite Cards for Step 1 */
+    .suite-selection-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .suite-card-select {
+      display: grid;
+      grid-template-columns: 220px 1fr auto;
+      background: rgba(15, 15, 15, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: var(--transition-normal);
+      cursor: pointer;
+    }
+
+    .suite-card-select:hover, .suite-card-select.selected {
+      border-color: var(--gold-primary);
+      background: rgba(197, 160, 89, 0.08);
+      box-shadow: 0 5px 20px var(--gold-glow);
+    }
+
+    .suite-card-select.selected {
+      outline: 2px solid var(--gold-primary);
+    }
+
+    .suite-card-img {
+      width: 100%;
+      height: 100%;
+      min-height: 160px;
+      object-fit: cover;
+    }
+
+    .suite-card-info {
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .suite-card-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--text-white);
+      margin-bottom: 0.3rem;
+    }
+
+    .suite-badges {
+      display: flex;
+      gap: 0.8rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .suite-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .chip-mini {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      color: var(--text-cream);
+    }
+
+    .suite-card-pricing {
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+      border-left: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .suite-price-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+
+    .suite-price-per {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    /* Step 2 Form Grid */
+    .guest-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .guest-form-grid .full {
+      grid-column: span 2;
+    }
+
+    /* Step 3 Addons */
+    .addons-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .addon-card {
+      background: rgba(15, 15, 15, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 1.2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .addon-card:hover, .addon-card.selected {
+      border-color: var(--gold-primary);
+      background: rgba(197, 160, 89, 0.1);
+    }
+
+    .addon-checkbox {
+      accent-color: var(--gold-primary);
+      width: 20px;
+      height: 20px;
+      margin-top: 3px;
+    }
+
+    .addon-details h4 {
+      color: var(--text-white);
+      font-size: 0.98rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .addon-details p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .addon-price {
+      font-size: 0.85rem;
+      color: var(--gold-primary);
+      font-weight: 700;
+    }
+
+    /* Step 4 Payment Card Preview & Form */
+    .payment-options-tabs {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .pay-tab {
+      flex: 1;
+      padding: 0.8rem;
+      background: rgba(15, 15, 15, 0.8);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: var(--transition-fast);
+    }
+
+    .pay-tab.active {
+      background: rgba(197, 160, 89, 0.2);
+      border-color: var(--gold-primary);
+      color: var(--gold-light);
+    }
+
+    .virtual-credit-card {
+      background: linear-gradient(135deg, #1f1d18 0%, #0d0c0a 100%);
+      border: 1px solid var(--gold-primary);
+      border-radius: var(--radius-md);
+      padding: 1.8rem;
+      margin-bottom: 1.8rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-chip {
+      width: 45px;
+      height: 32px;
+      background: linear-gradient(135deg, #f5f2ed 0%, #c5a059 100%);
+      border-radius: 6px;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-number-display {
+      font-family: monospace;
+      font-size: 1.3rem;
+      letter-spacing: 3px;
+      color: var(--text-white);
+      margin-bottom: 1.5rem;
+    }
+
+    .card-details-display {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* Sidebar Receipt Summary */
+    .summary-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.8rem;
+      position: sticky;
+      top: 100px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .summary-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--text-white);
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 0.8rem;
+    }
+
+    .summary-suite-preview {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .summary-suite-img {
+      width: 80px;
+      height: 65px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      border: 1px solid var(--border-color);
+    }
+
+    .summary-suite-name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--text-white);
+      line-height: 1.2;
+    }
+
+    .summary-dates {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+    }
+
+    .line-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .line-item.total {
+      border-top: 1px solid var(--border-color);
+      padding-top: 1rem;
+      margin-top: 1rem;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+
+    .promo-box {
+      display: flex;
+      gap: 0.6rem;
+      margin: 1.2rem 0;
+    }
+
+    .promo-box input {
+      flex: 1;
+      padding: 0.6rem 0.8rem;
+      background: rgba(5,5,5,0.8);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: #fff;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+    }
+
+    .guarantee-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(197, 160, 89, 0.08);
+      border: 1px dashed var(--gold-primary);
+      padding: 0.8rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      color: var(--gold-light);
+      margin-top: 1.2rem;
+    }
+
+    /* Nav Buttons inside Step */
+    .step-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Confirmation Box */
+    .confirmation-box {
+      text-align: center;
+      padding: 3rem 1.5rem;
+    }
+
+    .conf-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(16, 185, 129, 0.15);
+      border: 2px solid #10b981;
+      color: #10b981;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.3);
+    }
+
+    .conf-code {
+      display: inline-block;
+      background: rgba(197, 160, 89, 0.15);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-light);
+      padding: 0.5rem 1.5rem;
+      border-radius: var(--radius-full);
+      font-family: monospace;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      margin: 1rem 0 2rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: #000000;
+      border-top: 1px solid var(--border-color);
+      padding: 2.5rem 0;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+
+    @media (max-width: 900px) {
+      .booking-grid {
+        grid-template-columns: 1fr;
+      }
+      .suite-card-select {
+        grid-template-columns: 1fr;
+      }
+      .addons-list, .guest-form-grid, .date-search-grid {
+        grid-template-columns: 1fr;
+      }
+      .guest-form-grid .full {
+        grid-column: span 1;
+      }
+      .stepper-container {
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div><i class="fa-solid fa-shield-halved" style="color: var(--gold-primary);"></i> Best Rate Guarantee • Direct Booking Privileges</div>
+      <div><i class="fa-solid fa-headset" style="color: var(--gold-primary);"></i> 24/7 VIP Concierge: +1 (800) 555-0199</div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="rooms.html" class="brand-logo">
+        <div class="brand-logo-icon">
+          <i class="fa-solid fa-gem"></i>
+        </div>
+        <div>
+          <span class="brand-name">GRAND HORIZON</span>
+          <span class="brand-tagline">SUITES & RESORTS</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="rooms.html" class="nav-link"><i class="fa-solid fa-arrow-left"></i> Back to Suites</a></li>
+        <li><a href="rooms.html#gallery" class="nav-link">360° Tours</a></li>
+        <li><a href="rooms.html#offers" class="nav-link">Offers</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Banner -->
+  <div class="booking-banner">
+    <div class="container">
+      <h1>Reserve Your Luxury Sanctuary</h1>
+      <p>Configure dates, personalize VIP preferences, and lock in guaranteed best pricing with instant confirmation.</p>
+    </div>
+  </div>
+
+  <!-- Progress Stepper -->
+  <div class="stepper-container">
+    <div class="container">
+      <div class="stepper">
+        <div class="step-item active" id="stepNode1" onclick="goToStep(1)">
+          <div class="step-node">1</div>
+          <span class="step-label">Select Suite</span>
+        </div>
+        <div class="step-item" id="stepNode2" onclick="goToStep(2)">
+          <div class="step-node">2</div>
+          <span class="step-label">Guest Details</span>
+        </div>
+        <div class="step-item" id="stepNode3" onclick="goToStep(3)">
+          <div class="step-node">3</div>
+          <span class="step-label">VIP Add-ons</span>
+        </div>
+        <div class="step-item" id="stepNode4" onclick="goToStep(4)">
+          <div class="step-node">4</div>
+          <span class="step-label">Payment</span>
+        </div>
+        <div class="step-item" id="stepNode5">
+          <div class="step-node">5</div>
+          <span class="step-label">Confirmation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="booking-layout">
+    <div class="container">
+      <div class="booking-grid">
+        
+        <!-- Left Column: Dynamic Step Forms -->
+        <div id="bookingStepsContainer">
+          
+          <!-- STEP 1: DATES & SUITE SELECTION -->
+          <div class="step-content-card" id="step1">
+            <div class="step-title-wrap">
+              <h2><i class="fa-solid fa-calendar-days"></i> Dates & Suite Selection</h2>
+              <p class="step-subtitle">Choose your arrival & departure dates to view real-time suite availability.</p>
+            </div>
+
+            <!-- Date Selector Bar -->
+            <div class="date-search-grid">
+              <div class="form-group">
+                <label><i class="fa-solid fa-calendar-check"></i> Check-In Date</label>
+                <input type="date" id="inputCheckIn" value="2026-08-01" onchange="updateBookingCalculation()">
+              </div>
+              <div class="form-group">
+                <label><i class="fa-solid fa-calendar-minus"></i> Check-Out Date</label>
+                <input type="date" id="inputCheckOut" value="2026-08-05" onchange="updateBookingCalculation()">
+              </div>
+              <div class="form-group">
+                <label><i class="fa-solid fa-user-group"></i> Guests & Rooms</label>
+                <select id="inputGuests" onchange="updateBookingCalculation()">
+                  <option value="2">2 Adults (1 Suite)</option>
+                  <option value="3">2 Adults, 1 Child</option>
+                  <option value="4">4 Guests (2 Suites)</option>
+                  <option value="6">6 Guests (Presidential Villa)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Suite Selection Cards -->
+            <h3 style="font-family: var(--font-display); font-size: 1.4rem; color: var(--gold-light); margin-bottom: 1.2rem;">Available Luxury Suites:</h3>
+            <div class="suite-selection-list" id="suiteSelectionList">
+              <!-- Rendered via JS -->
+            </div>
+
+            <div class="step-actions">
+              <div></div>
+              <button class="btn-gold" onclick="nextStep(2)">
+                Continue to Guest Details <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 2: GUEST DETAILS & VIP PREFERENCES -->
+          <div class="step-content-card" id="step2" style="display: none;">
+            <div class="step-title-wrap">
+              <h2><i class="fa-solid fa-user-shield"></i> Primary Guest Details</h2>
+              <p class="step-subtitle">Please provide contact details and special requests for personalized butler service.</p>
+            </div>
+
+            <div class="guest-form-grid">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" id="guestFirstName" placeholder="e.g. Alexander" value="Alexander">
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" id="guestLastName" placeholder="e.g. Vance" value="Vance">
+              </div>
+              <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="guestEmail" placeholder="alexander@example.com" value="alex.vance@luxury.com">
+              </div>
+              <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" id="guestPhone" placeholder="+1 (555) 019-2834" value="+1 (555) 392-1082">
+              </div>
+              <div class="form-group">
+                <label>Special Occasion</label>
+                <select id="guestOccasion">
+                  <option value="None">Standard Vacation / Leisure</option>
+                  <option value="Honeymoon">Honeymoon Getaway</option>
+                  <option value="Anniversary">Wedding Anniversary</option>
+                  <option value="Birthday">Birthday Celebration</option>
+                  <option value="Business">Executive Business Stay</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Estimated Arrival Time</label>
+                <select id="guestArrivalTime">
+                  <option value="15:00">Standard Check-in (3:00 PM)</option>
+                  <option value="12:00">Early Arrival Request (12:00 PM)</option>
+                  <option value="18:00">Late Arrival (6:00 PM - 9:00 PM)</option>
+                  <option value="22:00">Night Arrival (After 10:00 PM)</option>
+                </select>
+              </div>
+              <div class="form-group full">
+                <label>VIP Suite Preferences & Special Requests</label>
+                <textarea id="guestSpecialRequests" rows="3" placeholder="High floor request, preferred pillow type, champagne preference, dietary restrictions..."></textarea>
+              </div>
+            </div>
+
+            <div class="step-actions">
+              <button class="btn-outline-gold" onclick="prevStep(1)">
+                <i class="fa-solid fa-arrow-left"></i> Back
+              </button>
+              <button class="btn-gold" onclick="nextStep(3)">
+                Customize VIP Add-ons <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 3: LUXURY ADD-ONS -->
+          <div class="step-content-card" id="step3" style="display: none;">
+            <div class="step-title-wrap">
+              <h2><i class="fa-solid fa-wine-glass"></i> Tailor Your Experience</h2>
+              <p class="step-subtitle">Select optional luxury services to enrich your upcoming stay.</p>
+            </div>
+
+            <div class="addons-list">
+              <div class="addon-card" onclick="toggleAddon('transfer')">
+                <input type="checkbox" id="addon_transfer" class="addon-checkbox" onchange="updateBookingCalculation()">
+                <div class="addon-details">
+                  <h4><i class="fa-solid fa-car-rear" style="color:var(--gold-primary);"></i> Limousine Airport Transfer</h4>
+                  <p>Private Rolls-Royce or Maybach round-trip pickup with personal chauffeur.</p>
+                  <span class="addon-price">+$180 Total</span>
+                </div>
+              </div>
+
+              <div class="addon-card" onclick="toggleAddon('champagne')">
+                <input type="checkbox" id="addon_champagne" class="addon-checkbox" onchange="updateBookingCalculation()">
+                <div class="addon-details">
+                  <h4><i class="fa-solid fa-bottle-droplet" style="color:var(--gold-primary);"></i> Moët & Chandon Vintage Champagne</h4>
+                  <p>Chilled bottle waiting in suite upon arrival with fresh strawberries.</p>
+                  <span class="addon-price">+$120 Total</span>
+                </div>
+              </div>
+
+              <div class="addon-card" onclick="toggleAddon('spa')">
+                <input type="checkbox" id="addon_spa" class="addon-checkbox" onchange="updateBookingCalculation()">
+                <div class="addon-details">
+                  <h4><i class="fa-solid fa-spa" style="color:var(--gold-primary);"></i> Unlimited Hydrotherapy Spa Pass</h4>
+                  <p>Daily access to thermal mineral pools, cedar saunas, and relaxation lounges.</p>
+                  <span class="addon-price">+$95 / person</span>
+                </div>
+              </div>
+
+              <div class="addon-card" onclick="toggleAddon('butler')">
+                <input type="checkbox" id="addon_butler" class="addon-checkbox" onchange="updateBookingCalculation()">
+                <div class="addon-details">
+                  <h4><i class="fa-solid fa-user-ninja" style="color:var(--gold-primary);"></i> Dedicated 24/7 Private Butler</h4>
+                  <p>Unpacking, personal valet, tea service, and bespoke itinerary planning.</p>
+                  <span class="addon-price">+$250 / night</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="step-actions">
+              <button class="btn-outline-gold" onclick="prevStep(2)">
+                <i class="fa-solid fa-arrow-left"></i> Back
+              </button>
+              <button class="btn-gold" onclick="nextStep(4)">
+                Proceed to Payment <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 4: PAYMENT -->
+          <div class="step-content-card" id="step4" style="display: none;">
+            <div class="step-title-wrap">
+              <h2><i class="fa-solid fa-credit-card"></i> Payment & Guarantee</h2>
+              <p class="step-subtitle">Secure SSL 256-Bit encrypted checkout. No charges until check-in for refundable suites.</p>
+            </div>
+
+            <div class="payment-options-tabs">
+              <div class="pay-tab active" id="payTabCard" onclick="switchPayMethod('card')">
+                <i class="fa-solid fa-credit-card"></i> Credit Card
+              </div>
+              <div class="pay-tab" id="payTabCrypto" onclick="switchPayMethod('crypto')">
+                <i class="fa-brands fa-bitcoin"></i> Crypto / Concierge
+              </div>
+              <div class="pay-tab" id="payTabArrival" onclick="switchPayMethod('arrival')">
+                <i class="fa-solid fa-hotel"></i> Pay at Hotel
+              </div>
+            </div>
+
+            <!-- Virtual Credit Card Display -->
+            <div class="virtual-credit-card" id="creditCardVisual">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="font-family: var(--font-display); font-size: 1.1rem; color: var(--gold-light);">GRAND HORIZON VIP MEMBER</span>
+                <i class="fa-brands fa-cc-visa" style="font-size: 2rem; color: var(--gold-primary);"></i>
+              </div>
+              <div class="card-chip"></div>
+              <div class="card-number-display" id="cardNumDisp">•••• •••• •••• 4892</div>
+              <div class="card-details-display">
+                <div>
+                  <span style="display: block; font-size: 0.65rem;">Cardholder</span>
+                  <span id="cardHolderDisp" style="color:#fff; font-weight:600;">ALEXANDER VANCE</span>
+                </div>
+                <div>
+                  <span style="display: block; font-size: 0.65rem;">Expires</span>
+                  <span id="cardExpDisp" style="color:#fff; font-weight:600;">08 / 28</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Credit Card Inputs -->
+            <div class="guest-form-grid" id="cardInputsArea">
+              <div class="form-group full">
+                <label>Card Number</label>
+                <input type="text" id="payCardNum" placeholder="4532 8920 1029 4892" value="4532 8920 1029 4892" oninput="updateCardVisual()">
+              </div>
+              <div class="form-group">
+                <label>Expiration Date</label>
+                <input type="text" id="payCardExp" placeholder="MM/YY" value="08/28" oninput="updateCardVisual()">
+              </div>
+              <div class="form-group">
+                <label>Security Code (CVV)</label>
+                <input type="text" id="payCardCvv" placeholder="123" value="882">
+              </div>
+            </div>
+
+            <div id="arrivalNoticeArea" style="display: none; background: rgba(197, 160, 89, 0.1); border: 1px solid var(--gold-primary); padding: 1.5rem; border-radius: var(--radius-sm); color: var(--gold-light); font-size: 0.9rem;">
+              <i class="fa-solid fa-circle-check" style="color:#10b981; font-size: 1.2rem; margin-right: 0.5rem;"></i>
+              You have selected <strong>Pay at Hotel upon Arrival</strong>. Your suite will be held guaranteed up to 6:00 PM on check-in day.
+            </div>
+
+            <div class="step-actions">
+              <button class="btn-outline-gold" onclick="prevStep(3)">
+                <i class="fa-solid fa-arrow-left"></i> Back
+              </button>
+              <button class="btn-gold" id="btnCompleteReservation" onclick="processFinalBooking()">
+                <i class="fa-solid fa-lock"></i> Authorize & Confirm ($<span id="btnTotalAmt">0</span>)
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 5: CONFIRMATION -->
+          <div class="step-content-card" id="step5" style="display: none;">
+            <div class="confirmation-box">
+              <div class="conf-icon">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <h2 style="font-family: var(--font-display); font-size: 2.2rem; color: var(--text-white); margin-bottom: 0.5rem;">
+                Reservation Confirmed!
+              </h2>
+              <p style="color: var(--text-muted); max-width: 550px; margin: 0 auto;">
+                Thank you, <strong id="confGuestName" style="color:var(--gold-light);">Alexander Vance</strong>. A confirmation email with check-in instructions and calendar invitation has been sent to your inbox.
+              </p>
+
+              <div>
+                <span class="conf-code" id="confResCode">GH-948201-RES</span>
+              </div>
+
+              <!-- Summary Card in Confirmation -->
+              <div style="background: rgba(5,5,5,0.7); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: var(--radius-sm); text-align: left; max-width: 500px; margin: 0 auto 2rem;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:0.5rem;">
+                  <span style="color:var(--text-muted);">Booked Suite:</span>
+                  <strong id="confSuiteName" style="color:var(--gold-light);">Presidential Horizon Suite</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+                  <span style="color:var(--text-muted);">Check-In:</span>
+                  <span id="confCheckIn">Aug 01, 2026</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+                  <span style="color:var(--text-muted);">Check-Out:</span>
+                  <span id="confCheckOut">Aug 05, 2026</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+                  <span style="color:var(--text-muted);">Duration:</span>
+                  <span id="confNights">4 Nights</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-top:0.8rem; border-top:1px solid var(--border-color); padding-top:0.8rem; font-weight:700; font-size:1.1rem; color:var(--gold-light);">
+                  <span>Total Amount Paid:</span>
+                  <span id="confTotalPaid">$5,320</span>
+                </div>
+              </div>
+
+              <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                <button class="btn-gold" id="btnLaunch360Booked" onclick="launch360FromConf()">
+                  <i class="fa-solid fa-vr-cardboard"></i> View Suite in 360°
+                </button>
+                <button class="btn-outline-gold" onclick="window.print()">
+                  <i class="fa-solid fa-print"></i> Print Receipt
+                </button>
+                <a href="rooms.html" class="btn-outline-gold">
+                  <i class="fa-solid fa-house"></i> Return Home
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Live Receipt Summary Sidebar -->
+        <aside class="summary-card">
+          <h3 class="summary-title"><i class="fa-solid fa-receipt"></i> Reservation Summary</h3>
+          
+          <div class="summary-suite-preview" id="summarySuitePreview">
+            <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=300&q=80" class="summary-suite-img" id="summaryImg" alt="Suite">
+            <div>
+              <h4 class="summary-suite-name" id="summaryName">Presidential Horizon Ocean Suite</h4>
+              <p class="summary-dates" id="summaryDates">Aug 01 - Aug 05 (4 Nights)</p>
+            </div>
+          </div>
+
+          <div class="line-item">
+            <span>Suite Rate (<span id="calcNightCount">4</span> nights x $<span id="calcPerNight">1,250</span>)</span>
+            <span>$<span id="calcSuiteSubtotal">5,000</span></span>
+          </div>
+
+          <div class="line-item" id="rowAddons" style="display: none;">
+            <span>Luxury VIP Add-ons</span>
+            <span>+$<span id="calcAddonsTotal">0</span></span>
+          </div>
+
+          <div class="line-item">
+            <span>Resort Fee (5%)</span>
+            <span>+$<span id="calcResortFee">250</span></span>
+          </div>
+
+          <div class="line-item">
+            <span>Local Occupancy Tax (10%)</span>
+            <span>+$<span id="calcTaxFee">500</span></span>
+          </div>
+
+          <div class="line-item" id="rowDiscount" style="display: none; color: #10b981;">
+            <span>Promo Discount (<span id="promoCodeLabel"></span>)</span>
+            <span>-$<span id="calcDiscountAmt">0</span></span>
+          </div>
+
+          <div class="promo-box">
+            <input type="text" id="promoInput" placeholder="PROMO CODE (e.g. HORIZON20)">
+            <button class="btn-outline-gold" style="padding: 0.5rem 0.8rem; font-size: 0.78rem;" onclick="applyPromoCode()">Apply</button>
+          </div>
+
+          <div class="line-item total">
+            <span>Estimated Total:</span>
+            <span>$<span id="calcFinalTotal">5,750</span></span>
+          </div>
+
+          <div class="guarantee-badge">
+            <i class="fa-solid fa-lock" style="font-size: 1.2rem; color: var(--gold-primary);"></i>
+            <span>Instant booking confirmation. Best rate guarantee with zero hidden fees.</span>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Grand Horizon Luxury Hotel & Resort Group. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    /* Dataset of Suites */
+    const SUITES = [
+      {
+        id: "room-1",
+        name: "Presidential Horizon Ocean Suite",
+        category: "Presidential",
+        price: 1250,
+        image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80",
+        panorama: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Hotel_Regent_Conti_Suites_360.jpg/2560px-Hotel_Regent_Conti_Suites_360.jpg",
+        features: ["Private Infinity Pool", "24/7 Butler", "Jacuzzi", "Ocean Balcony"]
+      },
+      {
+        id: "room-2",
+        name: "Royal Beachfront Pool Villa",
+        category: "Royal Villa",
+        price: 1850,
+        image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80",
+        panorama: "https://pannellum.org/images/cerro-toco-0.jpg",
+        features: ["Private Pool", "Direct Beach Access", "Free Limousine"]
+      },
+      {
+        id: "room-3",
+        name: "Executive Skyline Business Suite",
+        category: "Executive",
+        price: 780,
+        image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80",
+        panorama: "https://pannellum.org/images/baker.jpg",
+        features: ["Workstation", "Lounge Access", "Marble Bath"]
+      },
+      {
+        id: "room-4",
+        name: "Deluxe Azure Sea View Suite",
+        category: "Deluxe",
+        price: 620,
+        image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80",
+        panorama: "https://pannellum.org/images/alma.jpg",
+        features: ["Private Balcony", "Sea View", "Soaking Tub"]
+      },
+      {
+        id: "room-5",
+        name: "Honeymoon Canopy Romance Suite",
+        category: "Honeymoon",
+        price: 950,
+        image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80",
+        panorama: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Living_room_360_panorama.jpg/2560px-Living_room_360_panorama.jpg",
+        features: ["Canopy Bed", "Free Champagne", "Sunset Terrace"]
+      },
+      {
+        id: "room-6",
+        name: "Family Garden Pavilion Residence",
+        category: "Family",
+        price: 880,
+        image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=80",
+        panorama: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Hotel_room_panorama_360.jpg/2560px-Hotel_room_panorama_360.jpg",
+        features: ["2 Bedrooms", "Private Patio", "Kids Nook"]
+      }
+    ];
+
+    /* State */
+    let selectedSuite = SUITES[0];
+    let currentStep = 1;
+    let discountPercent = 0;
+    let appliedPromo = '';
+
+    window.addEventListener('DOMContentLoaded', () => {
+      parseURLParams();
+      renderSuitesList();
+      updateBookingCalculation();
+    });
+
+    function parseURLParams() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const roomId = urlParams.get('room');
+      if (roomId) {
+        const found = SUITES.find(s => s.id === roomId);
+        if (found) selectedSuite = found;
+      }
+      const checkin = urlParams.get('checkin');
+      const checkout = urlParams.get('checkout');
+      if (checkin) document.getElementById('inputCheckIn').value = checkin;
+      if (checkout) document.getElementById('inputCheckOut').value = checkout;
+    }
+
+    function renderSuitesList() {
+      const container = document.getElementById('suiteSelectionList');
+      container.innerHTML = SUITES.map(s => `
+        <div class="suite-card-select ${selectedSuite.id === s.id ? 'selected' : ''}" onclick="selectSuite('${s.id}')">
+          <img src="${s.image}" class="suite-card-img" alt="${s.name}">
+          <div class="suite-card-info">
+            <h3>${s.name}</h3>
+            <div class="suite-badges">
+              <span><i class="fa-solid fa-crown" style="color:var(--gold-primary);"></i> ${s.category} Tier</span>
+              <span><i class="fa-solid fa-water" style="color:var(--gold-primary);"></i> Premium View</span>
+            </div>
+            <div class="suite-features">
+              ${s.features.map(f => `<span class="chip-mini">${f}</span>`).join('')}
+            </div>
+          </div>
+          <div class="suite-card-pricing">
+            <div class="suite-price-num">$${s.price}</div>
+            <div class="suite-price-per">per night</div>
+            <button class="btn-outline-gold" style="padding: 0.4rem 0.8rem; font-size: 0.75rem;">
+              ${selectedSuite.id === s.id ? '<i class="fa-solid fa-check"></i> Selected' : 'Select Suite'}
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function selectSuite(id) {
+      const found = SUITES.find(s => s.id === id);
+      if (found) {
+        selectedSuite = found;
+        renderSuitesList();
+        updateBookingCalculation();
+      }
+    }
+
+    function updateBookingCalculation() {
+      const checkin = new Date(document.getElementById('inputCheckIn').value);
+      const checkout = new Date(document.getElementById('inputCheckOut').value);
+      
+      let nights = 1;
+      if (checkout > checkin) {
+        nights = Math.ceil((checkout - checkin) / (1000 * 60 * 60 * 24));
+      }
+
+      // Addons
+      let addonsCost = 0;
+      if (document.getElementById('addon_transfer')?.checked) addonsCost += 180;
+      if (document.getElementById('addon_champagne')?.checked) addonsCost += 120;
+      if (document.getElementById('addon_spa')?.checked) addonsCost += 95 * parseInt(document.getElementById('inputGuests').value || 2);
+      if (document.getElementById('addon_butler')?.checked) addonsCost += 250 * nights;
+
+      const suiteSubtotal = selectedSuite.price * nights;
+      const resortFee = Math.round(suiteSubtotal * 0.05);
+      const taxFee = Math.round(suiteSubtotal * 0.10);
+      
+      let discountAmt = Math.round(suiteSubtotal * (discountPercent / 100));
+
+      const finalTotal = suiteSubtotal + addonsCost + resortFee + taxFee - discountAmt;
+
+      // Update UI elements
+      document.getElementById('summaryImg').src = selectedSuite.image;
+      document.getElementById('summaryName').textContent = selectedSuite.name;
+      document.getElementById('summaryDates').textContent = `${formatDate(checkin)} - ${formatDate(checkout)} (${nights} Nights)`;
+
+      document.getElementById('calcNightCount').textContent = nights;
+      document.getElementById('calcPerNight').textContent = selectedSuite.price.toLocaleString();
+      document.getElementById('calcSuiteSubtotal').textContent = suiteSubtotal.toLocaleString();
+      
+      if (addonsCost > 0) {
+        document.getElementById('rowAddons').style.display = 'flex';
+        document.getElementById('calcAddonsTotal').textContent = addonsCost.toLocaleString();
+      } else {
+        document.getElementById('rowAddons').style.display = 'none';
+      }
+
+      document.getElementById('calcResortFee').textContent = resortFee.toLocaleString();
+      document.getElementById('calcTaxFee').textContent = taxFee.toLocaleString();
+
+      if (discountAmt > 0) {
+        document.getElementById('rowDiscount').style.display = 'flex';
+        document.getElementById('promoCodeLabel').textContent = appliedPromo;
+        document.getElementById('calcDiscountAmt').textContent = discountAmt.toLocaleString();
+      } else {
+        document.getElementById('rowDiscount').style.display = 'none';
+      }
+
+      document.getElementById('calcFinalTotal').textContent = finalTotal.toLocaleString();
+      document.getElementById('btnTotalAmt').textContent = finalTotal.toLocaleString();
+    }
+
+    function toggleAddon(type) {
+      const cb = document.getElementById(`addon_${type}`);
+      if (cb) {
+        cb.checked = !cb.checked;
+        cb.closest('.addon-card').classList.toggle('selected', cb.checked);
+        updateBookingCalculation();
+      }
+    }
+
+    function applyPromoCode() {
+      const code = document.getElementById('promoInput').value.trim().toUpperCase();
+      if (code === 'HORIZON20' || code === 'LUXURY2026') {
+        discountPercent = 20;
+        appliedPromo = code;
+        alert('🎉 Promo Code Applied! 20% discount added.');
+      } else if (code === 'WELCOME') {
+        discountPercent = 10;
+        appliedPromo = code;
+        alert('🎉 Promo Code Applied! 10% discount added.');
+      } else {
+        alert('Invalid promo code. Try "HORIZON20" or "WELCOME".');
+      }
+      updateBookingCalculation();
+    }
+
+    function goToStep(stepNum) {
+      if (stepNum > currentStep + 1 && stepNum !== 5) return; // Prevent jump ahead
+      
+      document.querySelectorAll('.step-content-card').forEach(el => el.style.display = 'none');
+      document.getElementById(`step${stepNum}`).style.display = 'block';
+
+      for (let i = 1; i <= 5; i++) {
+        const node = document.getElementById(`stepNode${i}`);
+        if (!node) continue;
+        node.classList.remove('active', 'completed');
+        if (i < stepNum) node.classList.add('completed');
+        if (i === stepNum) node.classList.add('active');
+      }
+
+      currentStep = stepNum;
+      window.scrollTo({ top: 220, behavior: 'smooth' });
+    }
+
+    function nextStep(stepNum) {
+      goToStep(stepNum);
+    }
+
+    function prevStep(stepNum) {
+      goToStep(stepNum);
+    }
+
+    function switchPayMethod(method) {
+      document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
+      if (method === 'card') {
+        document.getElementById('payTabCard').classList.add('active');
+        document.getElementById('creditCardVisual').style.display = 'block';
+        document.getElementById('cardInputsArea').style.display = 'grid';
+        document.getElementById('arrivalNoticeArea').style.display = 'none';
+      } else if (method === 'crypto') {
+        document.getElementById('payTabCrypto').classList.add('active');
+        document.getElementById('creditCardVisual').style.display = 'none';
+        document.getElementById('cardInputsArea').style.display = 'none';
+        document.getElementById('arrivalNoticeArea').style.display = 'block';
+        document.getElementById('arrivalNoticeArea').innerHTML = `
+          <i class="fa-brands fa-bitcoin" style="font-size:1.5rem; color:var(--gold-primary); margin-right:0.5rem;"></i>
+          <strong>Crypto / Web3 VIP Concierge Checkout:</strong> Payment wallet address will be generated upon confirmation with immediate zero-gas confirmation support (USDT, USDC, BTC, ETH).
+        `;
+      } else {
+        document.getElementById('payTabArrival').classList.add('active');
+        document.getElementById('creditCardVisual').style.display = 'none';
+        document.getElementById('cardInputsArea').style.display = 'none';
+        document.getElementById('arrivalNoticeArea').style.display = 'block';
+        document.getElementById('arrivalNoticeArea').innerHTML = `
+          <i class="fa-solid fa-hotel" style="font-size:1.5rem; color:var(--gold-primary); margin-right:0.5rem;"></i>
+          <strong>Pay at Hotel on Arrival:</strong> Your booking is guaranteed. Payment can be settled in cash, card, or wire transfer during check-in at the front desk.
+        `;
+      }
+    }
+
+    function updateCardVisual() {
+      const num = document.getElementById('payCardNum').value || '•••• •••• •••• 4892';
+      const exp = document.getElementById('payCardExp').value || '08/28';
+      const fname = document.getElementById('guestFirstName').value || 'ALEXANDER';
+      const lname = document.getElementById('guestLastName').value || 'VANCE';
+
+      document.getElementById('cardNumDisp').textContent = num;
+      document.getElementById('cardExpDisp').textContent = exp;
+      document.getElementById('cardHolderDisp').textContent = `${fname} ${lname}`.toUpperCase();
+    }
+
+    function processFinalBooking() {
+      const resCode = 'GH-' + Math.floor(100000 + Math.random() * 900000) + '-RES';
+      const fname = document.getElementById('guestFirstName').value || 'Valued';
+      const lname = document.getElementById('guestLastName').value || 'Guest';
+      
+      document.getElementById('confResCode').textContent = resCode;
+      document.getElementById('confGuestName').textContent = `${fname} ${lname}`;
+      document.getElementById('confSuiteName').textContent = selectedSuite.name;
+      
+      const checkin = new Date(document.getElementById('inputCheckIn').value);
+      const checkout = new Date(document.getElementById('inputCheckOut').value);
+      document.getElementById('confCheckIn').textContent = formatDate(checkin);
+      document.getElementById('confCheckOut').textContent = formatDate(checkout);
+      
+      const total = document.getElementById('calcFinalTotal').textContent;
+      document.getElementById('confTotalPaid').textContent = `$${total}`;
+
+      goToStep(5);
+
+      // Trigger Confetti Celebration!
+      if (window.confetti) {
+        confetti({
+          particleCount: 120,
+          spread: 80,
+          origin: { y: 0.6 },
+          colors: ['#c5a059', '#f5f2ed', '#9e7d3b']
+        });
+      }
+    }
+
+    function launch360FromConf() {
+      window.location.href = `rooms.html?open360=${selectedSuite.id}`;
+    }
+
+    function formatDate(date) {
+      if (isNaN(date)) return '';
+      return date.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+    }
+  </script>
+</body>
+</html>

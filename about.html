@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Us | Grand Horizon Hotel</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        /* Navbar */
+        header {
+            background-color: #1f2937;
+            color: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #f5c542;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: #f5c542;
+        }
+
+        /* Page Banner */
+        .page-banner {
+            height: 45vh;
+
+            background: linear-gradient(
+                rgba(0, 0, 0, 0.55),
+                rgba(0, 0, 0, 0.55)
+            ),
+            url("https://images.unsplash.com/photo-1542314831-068cd1dbfeeb")
+            center/cover;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .page-banner h1 {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .page-banner p {
+            font-size: 20px;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 70px 8%;
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-image {
+            width: 50%;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-content {
+            width: 50%;
+        }
+
+        .about-content h2 {
+            font-size: 35px;
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        /* Features */
+        .features {
+            background-color: white;
+            padding: 70px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 35px;
+            color: #1f2937;
+            margin-bottom: 40px;
+        }
+
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .feature-card {
+            padding: 30px;
+            text-align: center;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: #1f2937;
+            margin-bottom: 12px;
+            font-size: 22px;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 70px 8%;
+            text-align: center;
+            background-color: #1f2937;
+            color: white;
+        }
+
+        .mission h2 {
+            font-size: 35px;
+            margin-bottom: 20px;
+            color: #f5c542;
+        }
+
+        .mission p {
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111827;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 8px;
+            }
+
+            .page-banner h1 {
+                font-size: 38px;
+            }
+
+            .about-container {
+                flex-direction: column;
+            }
+
+            .about-image,
+            .about-content {
+                width: 100%;
+            }
+
+            .features-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+
+        <div class="logo">
+            Grand Horizon
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+
+        <div>
+            <h1>About Us</h1>
+
+            <p>
+                Discover the story behind Grand Horizon Hotel
+            </p>
+        </div>
+
+    </section>
+
+
+    <!-- About Hotel -->
+    <section class="about-section">
+
+        <div class="about-container">
+
+            <div class="about-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1566073771259-6a8506099945"
+                    alt="Grand Horizon Hotel"
+                >
+
+            </div>
+
+
+            <div class="about-content">
+
+                <h2>Welcome to Grand Horizon Hotel</h2>
+
+                <p>
+                    Grand Horizon Hotel is a premium destination designed
+                    to provide guests with an unforgettable experience.
+                    Located in a peaceful and convenient location, our
+                    hotel combines modern luxury with warm hospitality.
+                </p>
+
+                <p>
+                    From comfortable rooms and delicious dining options
+                    to relaxing wellness facilities, we provide everything
+                    you need for a memorable stay.
+                </p>
+
+                <p>
+                    Whether you are visiting for business, a family vacation,
+                    or a romantic getaway, our dedicated team is always ready
+                    to make your stay comfortable and enjoyable.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Why Choose Us -->
+    <section class="features">
+
+        <h2 class="section-title">
+            Why Choose Grand Horizon?
+        </h2>
+
+        <div class="features-container">
+
+            <!-- Feature 1 -->
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🏨
+                </div>
+
+                <h3>Luxury Accommodation</h3>
+
+                <p>
+                    Enjoy beautifully designed rooms with modern
+                    facilities and comfortable interiors.
+                </p>
+
+            </div>
+
+
+            <!-- Feature 2 -->
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    ⭐
+                </div>
+
+                <h3>Exceptional Service</h3>
+
+                <p>
+                    Our friendly and professional team is committed
+                    to providing excellent hospitality.
+                </p>
+
+            </div>
+
+
+            <!-- Feature 3 -->
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    📍
+                </div>
+
+                <h3>Prime Location</h3>
+
+                <p>
+                    Stay in a convenient location with easy access
+                    to major attractions and business areas.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Mission Section -->
+    <section class="mission">
+
+        <h2>Our Mission</h2>
+
+        <p>
+            Our mission is to create a welcoming environment where every
+            guest feels valued and comfortable. We aim to deliver quality
+            accommodation, exceptional service, and memorable experiences
+            that make every stay special.
+        </p>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 Grand Horizon Hotel. All Rights Reserved.
+        </p>
+
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Menu | Grand Horizon Hotel</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background-color: #f8f8f8;
+        color: #333;
+    }
+
+    /* Navbar */
+    header {
+        background-color: #1f2937;
+        color: white;
+        padding: 18px 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 26px;
+        font-weight: bold;
+        color: #f5c542;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin-left: 25px;
+        font-size: 16px;
+    }
+
+    nav a:hover {
+        color: #f5c542;
+    }
+
+    /* Page Banner */
+    .page-banner {
+        height: 45vh;
+
+        background: linear-gradient(
+            rgba(0, 0, 0, 0.55),
+            rgba(0, 0, 0, 0.55)
+        ),
+        url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0")
+        center/cover;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+    }
+
+    .page-banner h1 {
+        font-size: 50px;
+        margin-bottom: 10px;
+    }
+
+    .page-banner p {
+        font-size: 20px;
+    }
+
+    /* Menu Section */
+    .menu-section {
+        padding: 70px 8%;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 35px;
+        color: #1f2937;
+        margin-bottom: 40px;
+    }
+
+    .menu-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .menu-category {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .menu-category h2 {
+        color: #d49b00;
+        font-size: 27px;
+        margin-bottom: 25px;
+        border-bottom: 2px solid #f5c542;
+        padding-bottom: 10px;
+    }
+
+    .menu-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 18px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .menu-item:last-child {
+        border-bottom: none;
+    }
+
+    .item-info h3 {
+        color: #1f2937;
+        font-size: 19px;
+        margin-bottom: 7px;
+    }
+
+    .item-info p {
+        color: #666;
+        font-size: 14px;
+        line-height: 1.5;
+        max-width: 350px;
+    }
+
+    .price {
+        color: #d49b00;
+        font-size: 18px;
+        font-weight: bold;
+        white-space: nowrap;
+        margin-left: 15px;
+    }
+
+    /* Special Offer */
+    .special-offer {
+        background-color: #1f2937;
+        color: white;
+        text-align: center;
+        padding: 60px 8%;
+    }
+
+    .special-offer h2 {
+        color: #f5c542;
+        font-size: 35px;
+        margin-bottom: 15px;
+    }
+
+    .special-offer p {
+        font-size: 18px;
+        line-height: 1.7;
+        max-width: 700px;
+        margin: auto;
+    }
+
+    /* Footer */
+    footer {
+        background-color: #111827;
+        color: white;
+        text-align: center;
+        padding: 25px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+
+        header {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        nav a {
+            margin: 0 8px;
+        }
+
+        .page-banner h1 {
+            font-size: 38px;
+        }
+
+        .menu-container {
+            grid-template-columns: 1fr;
+        }
+
+        .menu-item {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .price {
+            margin-left: 0;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<!-- Navigation Bar -->
+<header>
+
+    <div class="logo">
+        Grand Horizon
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="menu.html">Menu</a>
+        <a href="rooms.html">Rooms</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+</header>
+
+
+<!-- Page Banner -->
+<section class="page-banner">
+
+    <div>
+        <h1>Our Menu</h1>
+
+        <p>
+            Delicious food made with love and the finest ingredients
+        </p>
+    </div>
+
+</section>
+
+
+<!-- Menu Section -->
+<section class="menu-section">
+
+    <h2 class="section-title">
+        Explore Our Menu
+    </h2>
+
+    <div class="menu-container">
+
+        <!-- Breakfast -->
+        <div class="menu-category">
+
+            <h2>🍳 Breakfast</h2>
+
+            <div class="menu-item">
+
+                <div class="item-info">
+                    <h3>Classic Breakfast</h3>
+                    <p>
+                        Eggs, toast, butter, fresh fruits and coffee.
+                    </p>
+                </div>
+
+                <span class="price">₹299</span>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div class="item-info">
+                    <h3>Masala Dosa</h3>
+                    <p>
+                        Crispy dosa served with sambar and coconut chutney.
+                    </p>
+                </div>
+
+                <span class="price">₹199</span>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div class="item-info">
+                    <h3>Vegetable Sandwich</h3>
+                    <p>
+                        Fresh vegetables, cheese and herbs in toasted bread.
+                    </p>
+                </div>
+
+                <span class="price">₹179</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Main Course -->
+        <div class="menu-category">
+
+            <h2>🍛 Main Course</h2>
+
+            <div class="menu-item">
+
+                <div class="item-info">
+                    <h3>Paneer Butter Masala</h3>
+                    <p>
+                        Soft paneer cooked in a rich creamy tomato gravy.
+                    </p>
+                </div>
+
+                <span class="price">₹349</span>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div class="item-info">
+                    <h3>Veg Biryani</h3>
+                    <p>
+                        Fragrant basmati rice cooked with fresh vegetables
+                        and aromatic spices.
+                    </p>
+                </div>
+
+                <span class="price">₹299</span>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div class="item-info">
+                    <h3>Dal Makhani</h3>
+                    <p>
+                        Slow-cooked black lentils with butter and cream.
+                    </p>
+                </div>
+
+                <span class="price">₹249</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Desserts -->
+        <div class="menu-category">
+
+            <h2>🍰 Desserts</h2>
+
+            <div class="menu-item">
+
+                <div class="item-info">
+                    <h3>Chocolate Cake</h3>
+                    <p>
+                        Soft and rich chocolate cake with creamy frosting.
+                    </p>
+                </div>
+
+                <span class="price">₹199</span>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div class="item-info">
+                    <h3>Gulab Jamun</h3>
+                    <p>
+                        Soft milk dumplings served warm with sugar syrup.
+                    </p>
+                </div>
+
+                <span class="price">₹149</span>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div class="item-info">
+                    <h3>Ice Cream</h3>
+                    <p>
+                        Choose from vanilla, chocolate or strawberry.
+                    </p>
+                </div>
+
+                <span class="price">₹129</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Beverages -->
+        <div class="menu-category">
+
+            <h2>☕ Beverages</h2>
+
+            <div class="menu-item">
+
+                <div class="item-info">
+                    <h3>Masala Tea</h3>
+                    <p>
+                        Traditional Indian tea prepared with aromatic spices.
+                    </p>
+                </div>
+
+                <span class="price">₹99</span>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div class="item-info">
+                    <h3>Fresh Fruit Juice</h3>
+                    <p>
+                        Freshly prepared seasonal fruit juice.
+                    </p>
+                </div>
+
+                <span class="price">₹149</span>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div class="item-info">
+                    <h3>Cold Coffee</h3>
+                    <p>
+                        Chilled coffee blended with milk and ice cream.
+                    </p>
+                </div>
+
+                <span class="price">₹179</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Special Offer -->
+<section class="special-offer">
+
+    <h2>Today's Special</h2>
+
+    <p>
+        Enjoy our Chef's Special Thali with a delicious combination
+        of traditional Indian dishes, fresh bread, rice, dessert,
+        and a refreshing drink.
+    </p>
+
+</section>
+
+
+<!-- Footer -->
+<footer>
+
+    <p>
+        © 2026 Grand Horizon Hotel. All Rights Reserved.
+    </p>
+
+</footer>
+```
+
+</body>
+</html>
+```
+
+Save the file as **`menu.html`** in the same folder as your other files:
+
+```text
+hotel-website/
+│
+├── index.html
+├── about.html
+├── menu.html
+├── rooms.html
+├── services.html
+└── contact.html
+```
+
+Make sure the navbar in all pages includes:
+
+```html
+<a href="menu.html">Menu</a>
+```
+
+so visitors can navigate to the **Menu** page from any page.
